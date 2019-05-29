@@ -7,8 +7,29 @@
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <ion-list>
+    <ion-item-sliding *ngFor="let todo of todos">
+      <ion-card>
+        <ion-item lines="inset" button [routerLink]="['/details', todo.id]"> 
+          <ion-avatar slot="start">
+            <img src="https://images.pexels.com/photos/937481/pexels-photo-937481.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+          </ion-avatar>
+            {{todo.task}}
+        </ion-item>
+        <ion-card-content>
+          {{todo.priority}}
+        </ion-card-content>
+      </ion-card>
+      <ion-item-options side="end">
+        <ion-item-option (click)="onRemove(item)" color="secodary">
+          <ion-icon name="checkmark" slot="end"></ion-icon>
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/details" routerDirection="forward">
+       <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
